@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY BIRTHDAY URVASHI🎁</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fffae6;
+            /* overflow: hidden; */
+        }
+
+        /* Page Styling */
+        .page {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffe6f0, #ffc2d1);
+            animation: fade-out 0.5s ease-out;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            animation: fade-in 0.5s ease-in;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff4081;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Gallery Styling */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* 2x2 grid on larger screens */
+            gap: 15px;
+            /* 15px gap */
+            width: 38%;
+            margin-top: 1px;
+        }
+
+        .gallery img {
+            width: 700px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(255, 0, 212, 0.3);
+        }
+
+        /* Celebration Section */
+        .celebration {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .celebration img {
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .celebration img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(255, 1, 221, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            /* Gallery: 1x1 grid on mobile */
+            .gallery {
+                grid-template-columns: 1fr;
+                /* 1x1 layout on mobile */
+            }
+
+            .gallery img {
+                width: 100%;
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="page1" class="page">
+        <h1>🎉 Happy Birthday! 🎉</h1>
+        <p>Welcome to your special day! May next year bring you even more happiness and success.</p>
+        <button onclick="switchPage(2)">🎁Learn More About You🎊</button>
+    </div>
+
+    <div id="page2" class="page">
+        <h1>About Your Special Day</h1>
+        <p>Today is all about celebrating *you*! Your kindness, laughter, and achievements light up the world around
+            you.</p>
+        <button onclick="switchPage(3)">📸View Memory Gallery📸</button>
+    </div>
+
+    <div id="page3" class="page">
+        <h1>Memory Gallery</h1>
+        <div class="gallery">
+            <img src="m1.jpg" alt="Memory 3">
+            <img src="memoris1.jpg" alt="Memory 1">
+            <img src="memoris2.jpg" alt="Memory 2">
+            <img src="m2.jpg" alt="Memory 4">
+        </div>
+        <button onclick="switchPage(4)">🎂Next: Cake and Fun!🎉</button>
+    </div>
+
+    <div id="page4" class="page">
+        <h1>🎂 Let&#39;s Celebrate!</h1>
+        <p>Cake, candles, stars, and all the magic that makes your birthday unforgettable!</p>
+        <div class="celebration">
+            <img src="gift.jpg" alt="Birthday Cake">
+        </div>
+        <button onclick="switchPage(1)">🎁Back to Welcome Page🔄️</button>
+    </div>
+
+    <script>
+        let currentPage = 1;
+
+        function switchPage(pageNumber) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach((page, index) => {
+                if (index + 1 === currentPage) {
+                    page.classList.remove('active');
+                }
+            });
+
+            setTimeout(() => {
+                pages.forEach((page, index) => {
+                    if (index + 1 === pageNumber) {
+                        page.classList.add('active');
+                    }
+                });
+                currentPage = pageNumber;
+            }, 500); // Match animation duration
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('page1').classList.add('active');
+        });
+    </script>
+</body>
+
+</html>
